@@ -1,0 +1,21 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  word-break: break-word; /*overflow-wrap: break-word;*/
+}
+/* Preserve dialog default margin to center */
+*:not(dialog) {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
