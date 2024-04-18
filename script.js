@@ -1,8 +1,29 @@
-const GameBoard = (() => {
-  
+const gameBoard = (() => {
+  const board = [
+    '', '', '',
+    '', '', '',
+    '', '', ''
+  ]
+
+  const resetBoard = () => {
+    for (let i = 0; i < board.length; i++) {
+      board[i] = ''
+    }
+  }
+
+  const getBoard = () => {
+    return board
+  }
+
+  const setBoard = (index, mark) => {
+    if (index < 0 || index > 8) return
+    board[index] = mark
+  }
+
+  return {getBoard, resetBoard, setBoard}
 })()
 
-const Game = (() => {
+const game = (() => {
   const winConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -41,13 +62,5 @@ const Game = (() => {
     return false
   }
 
-  return {checkEnd: checkWinner}
+  return {checkWinner}
 })()
-
-const array = [
-  'x', 'o', 'o',
-  'x', 'o', 'o',
-  'x', 'o', 'x'
-]
-
-Game.checkEnd(array)
