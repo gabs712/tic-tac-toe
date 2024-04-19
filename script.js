@@ -87,13 +87,55 @@ const Player = (name) => {
   const labels = document.querySelectorAll('[data-label')
   const gridCells = document.querySelectorAll('[data-gi]')
 
-  function clearWhenFocus(ev) {
-    ev.target.value = ''
-  }
   inputs.forEach((input) => {
     input.addEventListener('focus', clearWhenFocus, {once: true})
   })
 
+  function clearWhenFocus(ev) {
+    ev.target.value = ''
+  }
+
+  startButton.addEventListener('click', startGame)
+
+  function startGame(ev) {
+    inputs.forEach((input) => {
+      game.players.push(Player(input.value))
+      input.disabled = true
+    })
+    startTurn(ev)
+  }
+
+  function startTurn(ev) {
+    updateScore()
+    ev.target.remove()
+    gameBoard.reset()
+    clearBoard()
+    gridCells.forEach((cell) => {
+      cell.style.cursor = 'pointer'
+      cell.addEventListener('mouseenter', changeOpacity)
+      cell.addEventListener('click', playTurn)
+    })
+  }
+
+  function updateScore() {
+    labels.forEach((label, i) => {
+      const score = game.players[i].getScore()
+      label.textContent = `Score: ${score}`
+    })
+  }
+
+  function clearBoard() {
+    gridCells.forEach((cell) => {
+      cell.innerHTML = ''
+    })
+  }
+
+  function changeOpacity(ev) {
+    ev.target.style.opacity = '.6'
+    ev.target.addEventListener('mouseleave', () => {
+      ev.target.style.opacity = '1'
+    })
+  }
   function playTurn(ev) {
     const cellIndex = ev.target.dataset.index
     if (!gameBoard.cellIsEmpty(cellIndex)) return
@@ -112,11 +154,13 @@ const Player = (name) => {
     if (!winner) return
 
     if (winner === 'o') {
-      labels[0].textContent = 'Winner'
-      game.players[0].upScore()
+      const player1 = game.players[0]
+      player1.upScore()
+      labels[0].textContent = `${player1.name} Wins`
     } else if (winner === 'x') {
-      labels[1].textContent = 'Winner'
-      game.players[1].upScore()
+      const player2 = game.players[1]
+      player2.upScore()
+      labels[1].textContent = `${player2.name} Wins`
     } else {
       labels[0].textContent = 'Tie'
       labels[1].textContent = 'Tie'
@@ -128,13 +172,13 @@ const Player = (name) => {
     resetTurn()
   }
 
+  
   function resetTurn() {
     gridCells.forEach((cell) => {
       cell.removeEventListener('click', playTurn)
       cell.removeEventListener('mouseenter', changeOpacity)
       cell.style.cursor = 'default'
     })
-
     addResetButton()
   }
 
@@ -145,45 +189,4 @@ const Player = (name) => {
     button.addEventListener('click', startTurn)
     form.append(button)
   }
-
-  function changeOpacity(ev) {
-    ev.target.style.opacity = '.6'
-    ev.target.addEventListener('mouseleave', () => {
-      ev.target.style.opacity = '1'
-    })
-  }
-
-  function updateScore() {
-    labels.forEach((label, i) => {
-      const score = game.players[i].getScore()
-      label.textContent = `Score: ${score}`
-    })
-  }
-  function startTurn(ev) {
-    updateScore()
-    ev.target.remove()
-    gameBoard.reset()
-    clearBoard()
-    gridCells.forEach((cell) => {
-      cell.style.cursor = 'pointer'
-      cell.addEventListener('mouseenter', changeOpacity)
-      cell.addEventListener('click', playTurn)
-    })
-  }
-
-  function clearBoard() {
-    gridCells.forEach((cell) => {
-      cell.innerHTML = ''
-    })
-  }
-
-   function startGame(ev) {
-    inputs.forEach((input) => {
-      game.players.push(Player(input.value))
-      input.disabled = true
-    })
-    startTurn(ev)
-  }
-
-  startButton.addEventListener('click', startGame)
 })()
