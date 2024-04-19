@@ -58,6 +58,7 @@ svg {
   --size: 90px;
   width: var(--size);
   height: var(--size);
+  pointer-events: none;
 }
 
 .o {
