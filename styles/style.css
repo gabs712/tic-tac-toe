@@ -10,7 +10,7 @@ body {
   display: grid;
   align-content: start;
   gap: 23px;
-  padding-top: 13px;
+  padding-block: 13px;
 }
 
 h1 {
@@ -26,7 +26,7 @@ h1 {
 }
 
 .gi {
-  --cell-size: 110px ;
+  --cell-size: clamp(40px, 25vw, 110px) ;
   background-color: rgba(255, 255, 255, 0.274);
   width: var(--cell-size);
   height: var(--cell-size);
@@ -93,7 +93,9 @@ form {
   opacity: .8;
 }
 
-.inputField-item input:hover {
+.inputField-item input:disabled {
+  background-color: white;
+  color: black;
 }
 
 .inputField-item input:focus::placeholder {
