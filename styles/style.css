@@ -105,7 +105,7 @@ form {
   width: clamp(50px, 30vw, 300px);
   font-size: 1rem;
   border: none;
-  font-family: cursive;
+  font-family: inherit;
   text-align: center;
 }
 
