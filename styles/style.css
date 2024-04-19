@@ -91,11 +91,15 @@ form {
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);
+  width: clamp(50px, 30vw, 300px);
 }
 
 .inputField-item label{
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 1.2rem;
   text-align: center;
+  white-space: nowrap;
 }
 
 .inputField-item input {

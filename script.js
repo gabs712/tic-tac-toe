@@ -156,11 +156,11 @@ const Player = (name) => {
     if (winner === 'o') {
       const player1 = game.players[0]
       player1.upScore()
-      labels[0].textContent = `${player1.name} Wins`
+      labels[0].textContent = `Winner: ${player1.name}`
     } else if (winner === 'x') {
       const player2 = game.players[1]
       player2.upScore()
-      labels[1].textContent = `${player2.name} Wins`
+      labels[1].textContent = `Winner: ${player2.name}`
     } else {
       labels[0].textContent = 'Tie'
       labels[1].textContent = 'Tie'
