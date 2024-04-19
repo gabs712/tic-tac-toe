@@ -10,6 +10,7 @@ body {
   display: grid;
   align-content: start;
   gap: 23px;
+  padding-top: 13px;
 }
 
 h1 {
@@ -89,6 +90,14 @@ form {
 
 .inputField-item input:focus {
   outline: none;
+  opacity: .8;
+}
+
+.inputField-item input:hover {
+}
+
+.inputField-item input:focus::placeholder {
+  visibility: hidden;
 }
 
 .inputField-item input::placeholder  {
