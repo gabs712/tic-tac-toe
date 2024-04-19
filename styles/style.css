@@ -1,0 +1,108 @@
+body {
+  background: linear-gradient(45deg, aquamarine, steelblue ) ;
+  color: white;
+  font-family: cursive;
+
+}
+
+.wrapper {
+  min-height: 100svh;
+  display: grid;
+  align-content: start;
+  gap: 23px;
+}
+
+h1 {
+  text-align: center;
+  cursor: default;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  margin-bottom: 75px;
+}
+
+.gi {
+  --cell-size: 110px ;
+  background-color: rgba(255, 255, 255, 0.274);
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid rgba(0, 0, 0, 0.61);
+}
+
+.gi:nth-child(-1n + 3) {
+  border-top: none;
+}
+
+.gi:nth-child(3n + 1) {
+  border-left: none;
+}
+
+.gi:nth-child(7),
+.gi:nth-child(8),
+.gi:nth-child(9) {
+  border-bottom: none;
+}
+
+.gi:nth-child(3n + 3) {
+  border-right: none;
+}
+
+form {
+  max-width: 1000px;
+  margin: auto;
+  padding-inline: 30px;
+  display: grid;
+  gap: 15px;
+  justify-items: center;
+}
+
+.inputField {
+  display: grid;
+  justify-content: center;
+  gap: 50px;
+  grid-template-columns: repeat(2, auto);
+}
+
+.inputField-item {
+  display: grid;
+  gap: 5px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);
+}
+
+.inputField-item label{
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.inputField-item input {
+  width: clamp(50px, 30vw, 300px);
+  font-size: 1rem;
+  border: none;
+  font-family: cursive;
+  text-align: center;
+}
+
+.inputField-item input:focus {
+  outline: none;
+}
+
+.inputField-item input::placeholder  {
+  text-align: center;
+}
+
+button {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+button:hover {
+  color: rgb(81, 224, 176);
+}

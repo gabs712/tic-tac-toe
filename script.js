@@ -5,23 +5,24 @@ const gameBoard = (() => {
     '', '', ''
   ]
 
-  const resetBoard = () => {
+  const reset = () => {
     for (let i = 0; i < board.length; i++) {
       board[i] = ''
     }
   }
 
-  const getBoard = () => {
-    return board
-  }
-
-  const setBoard = (index, mark) => {
-    if (index < 0 || index > 8) return
+  const set = (index, mark) => {
+    if (board[index] !== '') {
+      console.log('Cell already occupied')
+      return false
+    }
     board[index] = mark
+    return true
   }
 
-  return {getBoard, resetBoard, setBoard}
+  return {board, reset, set}
 })()
+
 
 const game = (() => {
   const winConditions = [
@@ -63,4 +64,29 @@ const game = (() => {
   }
 
   return {checkWinner}
+})()
+
+
+const Player = (name, mark) => {
+  let score = 0
+
+  const getScore = () => score
+  const upScore = () => ++score
+
+  return {name, mark, getScore, upScore}
+}
+
+
+;(function uiEffects() {
+  ;(function inputClear() {
+    const inputs = document.querySelectorAll('input')
+    
+    inputs.forEach((input) => {
+      input.addEventListener('focus', (ev) => {
+        ev.target.value = ''
+      }, {once:true})
+    })
+  })()
+
+
 })()

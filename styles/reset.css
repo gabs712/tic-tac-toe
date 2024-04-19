@@ -3,7 +3,7 @@
 }
 * {
   margin: 0;
-  word-break: break-word; /*overflow-wrap: break-word;*/
+  word-break: break-word; /*works better than overflow-wrap: break-word;*/
 }
 /* Preserve dialog default margin to center */
 *:not(dialog) {
@@ -11,6 +11,7 @@
 }
 body {
   line-height: 1.5;
+  font-family: arial;
 }
 img, picture, video, canvas, svg {
   display: block;
